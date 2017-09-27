@@ -1,3 +1,4 @@
+require 'pry'
 class Contact
 
   @@contacts = []
@@ -30,40 +31,42 @@ class Contact
   # This method should accept an id as an argument
   # and return the contact who has that id
   def self.find(id)
-    # if @@contacts.include?(id)
-    #   puts "yes they're here"
-    # else
-    #   puts "Not on the list"
-    # end
-
+    @@contacts.find { |contact| contact.id == id }
   end
 
   # This method should allow you to specify
   # 1. which of the contact's attributes you want to update
   # 2. the new value for that attribute
   # and then make the appropriate change to the contact
-  def update
+  def update(var, new_val)
+    send("#{var}=", new_val)
 
+    # ALTERNATIVE METHOD
+    # case var
+    # when 'first_name'
+    #   self.first_name=(new_val)
+    # when 'email'
+    #   self.email=(new_val)
+    # when 'last_name'
+    #   self.last_name=(new_val)
+    # when 'notes'
+    #   self.notes=(new_val)
+    # else
+    #   raise "Can't update '#{var}' with '#{new_val}'"
+    # end
   end
 
   # This method should work similarly to the find method above
   # but it should allow you to search for a contact using attributes other than id
   # by specifying both the name of the attribute and the value
   # eg. searching for 'first_name', 'Betty' should return the first contact named Betty
-  def self.find_by
-
+  def self.find_by(attribute, value)
+    @@contacts.find { |contact| contact.send(attribute) == value }
   end
 
   # This method should delete all of the contacts
   def self.delete_all
-    puts "Are you sure you want to delete all contacts?"
-    answer = gets.chomp
-    if answer == "yes" || answer == "true"
-       @@contacts.clear
-       puts "Your contact list is now empty"
-    else
-      puts "No contacts have been deleted"
-    end
+    @@contacts.clear
   end
 
   def full_name
@@ -117,6 +120,21 @@ class Contact
   end
 end
 
-# abby = Contact.create("abby", "christens", 'abby@gmail.com')
+abby = Contact.create("abby", "christens", 'abby@gmail.com')
+matt = Contact.create("Matt", "Test", "email")
+# puts abby.notes
+# abby.update("notes", "new notes")
+p Contact.find_by("first_name", "Matt")
 # abby.first_name = "Abigail"
-# puts abby.first_name
+# puts abby.notes
+
+ # abby.update
+ #  "which variable woudl you like to update"
+ #  var = gets.chomp
+ #  => first_name
+ #  "what is the new value for this field?"
+ #  new_val = gets.chomp
+ #  => "Abigail"
+ #
+ #  self.find { |variable, value| variable.var = new_val }
+ #  @@contacts.find { |contact| contact.id == id }
