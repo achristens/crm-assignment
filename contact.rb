@@ -1,11 +1,19 @@
 class Contact
 
+  @@contacts = []
+  @@id       = 1
+  
   # This method should initialize the contact's attributes
-  def initialize
-
+  def initialize(first_name, last_name, email, notes = 'N/A')
+    @first_name = first_name
+    @last_name  = last_name
+    @email      = email
+    @notes      = notes
+    @id         = @@id
+    @@id       += 1
   end
 
-  # This method should call the initializer, 
+  # This method should call the initializer,
   # store the newly created contact, and then return it
   def self.create
 
@@ -22,7 +30,7 @@ class Contact
 
   end
 
-  # This method should allow you to specify 
+  # This method should allow you to specify
   # 1. which of the contact's attributes you want to update
   # 2. the new value for that attribute
   # and then make the appropriate change to the contact
@@ -44,7 +52,7 @@ class Contact
   end
 
   def full_name
-
+    "#{first_name} #{last_name}"
   end
 
   # This method should delete the contact
@@ -54,5 +62,41 @@ class Contact
   end
 
   # Feel free to add other methods here, if you need them.
-  
+  # WRITERS
+  def first_name=(first_name)
+    @first_name = first_name
+  end
+
+  def last_name=(last_name)
+    @last_name = last_name
+  end
+
+  def email=(email)
+    @email = email
+  end
+
+  def notes=(notes)
+    @notes = notes
+  end
+
+  # READERS
+  def first_name
+    @first_name
+  end
+
+  def last_name
+    @last_name
+  end
+
+  def email
+    @email
+  end
+
+  def notes
+    @notes
+  end
 end
+
+# abby = Contact.new("abby", "christens", 'abby@gmail.com')
+# abby.first_name = "Abigail"
+# puts abby.first_name
