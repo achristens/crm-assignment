@@ -77,7 +77,6 @@ class Contact
   # HINT: Check the Array class docs for built-in methods that might be useful here
   def delete
     @@contacts.delete(self)
-    return @@contacts
   end
 
   # Feel free to add other methods here, if you need them.
@@ -120,12 +119,12 @@ class Contact
   end
 end
 
-abby = Contact.create("abby", "christens", 'abby@gmail.com')
-matt = Contact.create("Matt", "Test", "email")
-# puts abby.notes
-# abby.update("notes", "new notes")
-p Contact.find_by("first_name", "Matt")
-# abby.first_name = "Abigail"
+# abby = Contact.create("abby", "christens", 'abby@gmail.com')
+# matt = Contact.create("Matt", "Test", "email")
+# # puts abby.notes
+# # abby.update("notes", "new notes")
+# p Contact.find_by("first_name", "Matt")
+# # abby.first_name = "Abigail"
 # puts abby.notes
 
  # abby.update
