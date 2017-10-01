@@ -61,13 +61,13 @@ class CRM
     id = gets.to_i
     id = Contact.find(id)
 
-    print "Enter the attribute to update: first_name', 'last_name', 'email', or 'notes': "
+    print "Enter the attribute to update: first_name', 'last_name', 'email', or 'note': "
     var = gets.chomp
 
     print "Enter the new value for the field: "
     new_val = gets.chomp
 
-    id.update(var, new_val)
+    id.update_attributes(var => new_val)
   end
 
   def delete_contact
@@ -90,14 +90,16 @@ class CRM
     print "Enter the search term: "
     value = gets.chomp
 
-    puts Contact.find_by(attribute, value).inspect
+    puts Contact.find_by(attribute = value).inspect
   end
 end
 
-at_exit do
-  ActiveRecord::Base.connection.close
-end
 
 a_crm_app = CRM.new("a_crm_app")
 
 a_crm_app.main_menu
+
+
+at_exit do
+  ActiveRecord::Base.connection.close
+end
