@@ -74,8 +74,6 @@ class CRM
     print "Enter the ID of the person you wish to delete: "
     id = gets.to_i
     id = Contact.find(id)
-
-    # This line is returning errors:
     id.delete
   end
 
@@ -90,7 +88,8 @@ class CRM
     print "Enter the search term: "
     value = gets.chomp
 
-    puts Contact.find_by(attribute = value).inspect
+    puts Contact.find_by(attribute => value).inspect
+    # puts Contact.where(value = attribute)
   end
 end
 
